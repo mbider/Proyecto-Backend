@@ -12,7 +12,15 @@ $tours = Array();
 			$id = $row["Id"];
 			$tur="http://localhost/detalletour.php?id=$id";
 			$foto="http://localhost/foto.php?id=$id";
-			$tour = Array("Id" => $row["Id"], "Nombre" => $row["Nombre"], "Usuario" => $row["Usuario"], "Ubicacion" => $row["Ubicacion"], "Coordenadas" => $row["Coordenadas"], "FotoURL" => $foto, "Likes" => $row["Likes"], "Descripcion" => $row["Descripcion"],"DetalleURL" => $tur);
+			$tour = Array("Id" => $row["Id"], "Nombre" => $row["Nombre"], 
+			"Usuario" => $row["Usuario"], 
+			"Ubicacion" => $row["Ubicacion"], 
+			"Coordenadas" => $row["Coordenadas"], 
+			"FotoURL" => $foto, 
+			"Likes" => $row["Likes"], 
+			"Descripcion" => $row["Descripcion"],
+			"DetalleURL" => $tur
+			);
 			array_push($tours, $tour);
 		}
 	}
