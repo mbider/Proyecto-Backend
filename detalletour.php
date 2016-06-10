@@ -13,15 +13,15 @@ $detallepunto = "SELECT P.Nombre AS NombrePunto, P.Dia AS DiaPunto, P.Id AS IdPu
 				INNER JOIN tour T 
 				ON P.Idtour = T.Id WHERE P.Idtour=".$_GET["id"];
 
-$ejecucionpunto = mysqli_query($localhost, $detallepunto);				
-$ejecucionusuario = mysqli_query($localhost, $detalleusuario);
-$ejecuciondetalle = mysqli_query($localhost, $detalletour);
-$ejecuciongusto = mysqli_query($localhost, $detallegusto);
+$ejecucionpunto = mysqli_query($GLOBALS["CONN"], $detallepunto);				
+$ejecucionusuario = mysqli_query($GLOBALS["CONN"], $detalleusuario);
+$ejecuciondetalle = mysqli_query($GLOBALS["CONN"], $detalletour);
+$ejecuciongusto = mysqli_query($GLOBALS["CONN"], $detallegusto);
 $puntos = Array();
 	if(mysqli_num_rows($ejecucionpunto)){
 		while($row=mysqli_fetch_assoc($ejecucionpunto)){
 		$id = $row['IdPunto'];
-		$fotopunto = "http://localhost/Proyecto2/foto.php?id=".$row['IdPunto']."&tabla=punto";
+		$fotopunto = generarURL("/foto.php?id=".$row['IdPunto']."&tabla=punto");
 		$punto = Array(
 			"Id" => $id, 
 			"Direccion" => $row['DireccionPunto'], 
@@ -50,7 +50,7 @@ $usuarios = Array();
 if(mysqli_num_rows($ejecucionusuario)){
 	while($row = mysqli_fetch_array($ejecucionusuario)){
 		$id = $row['IdUsuario'];
-		$fotousu = "http://localhost/Proyecto2/foto.php?id=".$row['IdUsuario']."&tabla=usuario";
+		$fotousu = generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
 		$usuario = Array(
 			"Id" => $id,
 			"Nombre" => $row["NombreUsuario"],
@@ -63,7 +63,7 @@ if(mysqli_num_rows($ejecucionusuario)){
 if(mysqli_num_rows($ejecuciondetalle)){
 	$row=mysqli_fetch_assoc($ejecuciondetalle);
 	$id = $row["Id"];
-	$foto = "http://localhost/Proyecto2/foto.php?id=".$row['Id']."&tabla=tour";
+	$foto = generarURL("/foto.php?id=".$row['Id']."&tabla=tour");
 	$tour = Array(
 		"Id" => $id, 
 		"Nombre" => $row["Nombre"], 

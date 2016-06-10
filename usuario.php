@@ -7,7 +7,7 @@ function cargarUsuario($id) {
 	if(mysqli_num_rows($query_exec)) {
 		$row = mysqli_fetch_assoc($query_exec);
 		$id = $row['IdUsuario'];
-		$fotousu="http://localhost/Proyecto2/foto.php?id=".$id."&tabla=usuario";
+		$fotousu=generarURL("/foto.php?id=".$id."&tabla=usuario");
 		$usuario = Array(
 			"Id" => $id,
 			"Nombre" =>  $row['NombreUsuario'],
@@ -25,7 +25,7 @@ function cargarToursPorUsuario($id) {
 	if(mysqli_num_rows($query_exec2)) {
 		while($row=mysqli_fetch_assoc($query_exec2)){
 			$id = $row['IdTour'];
-			$fototour="http://localhost/Proyecto2/foto.php?id=".$id."&tabla=tour";
+			$fototour=generarURL("/foto.php?id=".$id."&tabla=tour");
 			$tour = Array(
 				"Id" => $id,
 				"Nombre" =>  $row['NombreTour'],
