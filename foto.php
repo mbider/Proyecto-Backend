@@ -1,15 +1,16 @@
 <?php
 require_once("conexion.php");
-header("Content-Type: image/jpeg");
-$_GET["id"];
-$query_search = "SELECT Foto FROM Tour WHERE id=".$_GET["id"];
-$query_exec = mysqli_query($localhost, $query_search);
+$id=$_GET["id"];
+$tabla=$_GET["tabla"];
+$query = "SELECT Foto FROM ".$tabla." WHERE id=".$_GET["id"];
+$query_exec = mysqli_query($localhost, $query);
 if(mysqli_num_rows($query_exec)){
-		while($row=mysqli_fetch_assoc($query_exec)){
-			$foto = $row["Foto"];
-		}
-	}
-	echo $foto;
+	$row=mysqli_fetch_assoc($query_exec);
+	$foto = $row["Foto"];
+}
+
+header("Content-Type: image/jpeg");
+echo $foto;
 mysqli_close($localhost);
 
 ?>
