@@ -11,7 +11,7 @@ else {/*
 	$GLOBALS["MYSQL_USERNAME"] = "b606f22f4191d5";
 	$GLOBALS["MYSQL_DATABASE"] = "viajar";
 	$GLOBALS["MYSQL_HOST"]     = "us-cdbr-azure-central-a.cloudapp.net";
-	$GLOBALS["MYSQL_PASSWORD"] = "66d80d73";*/
+	$GLOBALS["MYSQL_PASSWORD"] = "66d80d73";
 }
 
 if (array_key_exists("HTTP_HOST", $_ENV)) {
