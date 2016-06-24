@@ -1,5 +1,19 @@
 <?php 
 
+if (file_exists("env.php")) {
+	require_once("env.php");
+}
+else {/*
+	$GLOBALS["MYSQL_USERNAME"] = "root";
+	$GLOBALS["MYSQL_DATABASE"] = "basenueva";
+	$GLOBALS["MYSQL_HOST"]     = "localhost";
+	$GLOBALS["MYSQL_PASSWORD"] = "";*/
+	$GLOBALS["MYSQL_USERNAME"] = "b606f22f4191d5";
+	$GLOBALS["MYSQL_DATABASE"] = "viajar";
+	$GLOBALS["MYSQL_HOST"]     = "us-cdbr-azure-central-a.cloudapp.net";
+	$GLOBALS["MYSQL_PASSWORD"] = "66d80d73";*/
+}
+
 if (array_key_exists("HTTP_HOST", $_ENV)) {
 	$GLOBALS["URL_BASE"] = "http://" . $_ENV["HTTP_HOST"];
 }
@@ -17,13 +31,12 @@ function generarURL($relativo) {
 	return $GLOBALS["URL_BASE"] . $relativo;
 }
 
-$hostname_localhost = "localhost";
-$database_localhost = "basenueva";
-$username_localhost = "root";
-$password_localhost = "";
-
-
-$GLOBALS["CONN"] = mysqli_connect($hostname_localhost, $username_localhost, $password_localhost, $database_localhost);
+$GLOBALS["CONN"] = mysqli_connect(
+	$GLOBALS["MYSQL_HOST"],
+	$GLOBALS["MYSQL_USERNAME"],
+	$GLOBALS["MYSQL_PASSWORD"],
+	$GLOBALS["MYSQL_DATABASE"]
+);
 
 mysqli_query($GLOBALS["CONN"], "set names 'utf8'");
 

@@ -1,0 +1,9 @@
+u202124688
+CBbGz0WcbN
+ascii
+cd "/public_html/bd"
+lcd "C:\wamp64\www\Proyecto2"
+prompt
+mput *.php
+close
+quit

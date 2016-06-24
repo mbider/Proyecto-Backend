@@ -2,7 +2,7 @@
 require_once("conexion.php");
 $usuarios = Array();
 function cargarUsuario($id) {
-	$query_search ="SELECT Nombre AS NombreUsuario, Id AS IdUsuario FROM usuario WHERE Id=".$id;
+	$query_search ="SELECT Nombre AS NombreUsuario, Id AS IdUsuario, Lugar_residencia AS Residencia FROM usuario WHERE Id=".$id;
 	$query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
 	if(mysqli_num_rows($query_exec)) {
 		$row = mysqli_fetch_assoc($query_exec);
@@ -11,6 +11,7 @@ function cargarUsuario($id) {
 		$usuario = Array(
 			"Id" => $id,
 			"Nombre" =>  $row['NombreUsuario'],
+			"Residencia" =>  $row['Residencia'],
 			"FotoURL" => $fotousu
 		);
 		
