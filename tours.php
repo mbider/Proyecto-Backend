@@ -4,7 +4,7 @@ require_once("conexion.php");
 $query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, T.*, g.Id AS IdGusto, g.Nombre AS NombreGusto FROM tour T 
 INNER JOIN usuario U ON T.Idusuario = U.Id inner join gustoxtour gxt on T.Id = gxt.Idtour 
 INNER JOIN gusto g on g.Id = gxt.Idgusto";
-						
+
 $query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
 $tours = Array();
 $ultimoId = -1;
@@ -57,6 +57,7 @@ $ultimoId = -1;
 	header("Content-Type: application/json; charset=UTF-8");
 	$json = json_encode($tours, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 	echo($json);
-
+	
+	
 mysqli_close($GLOBALS["CONN"]);
 ?>

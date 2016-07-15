@@ -16,8 +16,12 @@ else {
 if (array_key_exists("HTTP_HOST", $_ENV)) {
 	$GLOBALS["URL_BASE"] = "http://" . $_ENV["HTTP_HOST"];
 }
-else {
+
+if (getenv("HTTP_HOST") === false) {
 	$GLOBALS["URL_BASE"] = "http://localhost/Proyecto2";
+}
+else {
+	$GLOBALS["URL_BASE"] = "http://" . getenv("HTTP_HOST");
 }
 
 function json($objeto) {
