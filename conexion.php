@@ -1,5 +1,18 @@
 <?php 
 
+if (getenv("MYSQL_HOSTNAME") === false) {
+	$GLOBALS["MYSQL_HOSTNAME"] = "localhost";
+	$GLOBALS["MYSQL_USERNAME"] = "root";
+	$GLOBALS["MYSQL_PASSWORD"] = "";
+	$GLOBALS["MYSQL_DATABASE"] = "base";
+}
+else {
+	$GLOBALS["MYSQL_HOSTNAME"] = getenv("MYSQL_HOSTNAME");
+	$GLOBALS["MYSQL_USERNAME"] = getenv("MYSQL_USERNAME");
+	$GLOBALS["MYSQL_PASSWORD"] = getenv("MYSQL_PASSWORD");
+	$GLOBALS["MYSQL_DATABASE"] = getenv("MYSQL_DATABASE");
+}
+
 if (array_key_exists("HTTP_HOST", $_ENV)) {
 	$GLOBALS["URL_BASE"] = "http://" . $_ENV["HTTP_HOST"];
 }
@@ -17,13 +30,12 @@ function generarURL($relativo) {
 	return $GLOBALS["URL_BASE"] . $relativo;
 }
 
-$hostname_localhost = "localhost";
-$database_localhost = "basenueva";
-$username_localhost = "root";
-$password_localhost = "";
-
-
-$GLOBALS["CONN"] = mysqli_connect($hostname_localhost, $username_localhost, $password_localhost, $database_localhost);
+$GLOBALS["CONN"] = mysqli_connect(
+	$GLOBALS["MYSQL_HOSTNAME"],
+	$GLOBALS["MYSQL_USERNAME"],
+	$GLOBALS["MYSQL_PASSWORD"],
+	$GLOBALS["MYSQL_DATABASE"]
+);
 
 mysqli_query($GLOBALS["CONN"], "set names 'utf8'");
 
