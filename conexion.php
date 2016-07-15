@@ -28,6 +28,7 @@ function json($objeto) {
 	header("Content-Type: application/json; charset=UTF-8");
 	$json = json_encode($objeto, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 	echo($json);
+	echo("\n");
 }
 
 function generarURL($relativo) {
