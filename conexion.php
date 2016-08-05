@@ -4,7 +4,7 @@ if (getenv("MYSQL_HOSTNAME") === false) {
 	$GLOBALS["MYSQL_HOSTNAME"] = "localhost";
 	$GLOBALS["MYSQL_USERNAME"] = "root";
 	$GLOBALS["MYSQL_PASSWORD"] = "";
-	$GLOBALS["MYSQL_DATABASE"] = "base";
+	$GLOBALS["MYSQL_DATABASE"] = "basenueva";
 }
 else {
 	$GLOBALS["MYSQL_HOSTNAME"] = getenv("MYSQL_HOSTNAME");

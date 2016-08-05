@@ -1,6 +1,5 @@
 <?php
 require_once("conexion.php");
-
 $Usuario = json_decode(file_get_contents('php://input'), true);
 $consulta = "INSERT INTO usuario (Nombre,Lugar_residencia,Email,Contraseña) VALUES (?, ?, ?, ?)";
 $stmt = $GLOBALS["CONN"]->prepare($consulta);
@@ -12,8 +11,7 @@ $stmt->bind_param(
 	$Usuario["Contraseña"]
 );
 $res = $stmt->execute();
-
-if ($res) {		
+if ($res){		
 	$Registro = array("Id" => $GLOBALS["CONN"]->insert_id);
 	json($Registro);
 }
@@ -29,6 +27,5 @@ else {
 	http_response_code(500);
 	json(Array("Error" => $mensaje));
 }
-
 mysqli_close($GLOBALS["CONN"]);
 ?>
