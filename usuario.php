@@ -37,7 +37,8 @@ function cargarToursPorUsuario($id) {
 			Array_push($tours, $tour);
 		}
 		return $tours;
-	}
+	}else
+		return array();
 }
 
 
@@ -46,9 +47,8 @@ function cargarToursPorUsuario($id) {
 $idusu = $_GET["id"];
 
 $usuario = CargarUsuario($idusu);
-$tours   = CargarToursPorUsuario($idusu);
+$tours = CargarToursPorUsuario($idusu);
 
 $usuario["Tours"] = $tours;
-
 json($usuario);
 ?>
