@@ -2,6 +2,7 @@
 require_once("conexion.php");
 
 $Tour = json_decode(file_get_contents('php://input'), true);
+
 $consulta = "SELECT Id FROM usuario WHERE Contraseña = ? AND Email = ?";
 $stmt = $GLOBALS["CONN"]->prepare($consulta);
 $stmt->bind_param(

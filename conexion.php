@@ -31,6 +31,78 @@ function json($objeto) {
 	echo("\n");
 }
 
+function listarTours(){
+	
+	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, T.* FROM tour T 
+	INNER JOIN usuario U ON T.Idusuario = U.Id";
+
+	$query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
+	$tours = LeerTours($query_exec);
+	return $tours;
+}
+
+
+function gustosPorTour($id) {
+				
+	$gustos_query = "SELECT g.Id, g.Nombre FROM tour T 
+		inner join gustoxtour gxt on T.Id = gxt.Idtour 
+		INNER JOIN gusto g on g.Id = gxt.Idgusto
+		WHERE T.Id = " . $id;
+		
+	$gustos_resultado = mysqli_query($GLOBALS["CONN"], $gustos_query);
+	
+	$gustos = array();
+	
+	if (mysqli_num_rows($gustos_resultado)){
+		while($row = mysqli_fetch_assoc($gustos_resultado)){
+			array_push($gustos, $row);
+		}
+	}
+	
+	return $gustos;
+}
+
+
+function LeerTours($resultado){
+	$tours = Array();
+	$ultimoId = -1;
+	if (mysqli_num_rows($resultado)){
+		while($row = mysqli_fetch_assoc($resultado)){
+			$id = $row["Id"];
+
+			$nombre=$row["Nombre"];
+			$ubicacion=$row["Ubicacion"];
+			$desc=$row["Descripcion"];
+			
+			$tur=generarURL("/detalletour.php?id=" . $id);
+			$foto=generarURL("/foto.php?id=".$id."&tabla=tour");
+			$fotousu=generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
+			
+			$usuario = Array(
+				"Id" => $row["IdUsuario"],
+				"Nombre" =>  $row["NombreUsuario"],
+				"FotoURL"=>$fotousu
+			);
+						
+			$tour = Array(
+				"Id" => $id,
+				"Nombre" =>$nombre, 
+				"Ubicacion"=>$ubicacion,
+				"FotoURL" => $foto,
+				"Likes" => $row["Likes"], 
+				"Descripcion"=>$desc,
+				"DetalleURL" => $tur,
+				"Usuario"=>$usuario,
+				"Gustos"=>gustosPorTour($id)
+			);
+					
+			array_push($tours, $tour);				
+		}
+	}
+	return $tours;
+}
+
+
 function generarURL($relativo) {
 	return $GLOBALS["URL_BASE"] . $relativo;
 }
