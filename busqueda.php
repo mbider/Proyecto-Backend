@@ -16,10 +16,10 @@ $stmt->bind_param(
 );
 $stmt->execute();
 $resultado = $stmt->get_result();
-$tours = LeerTours($resultado);
-json($tours);
-
-
+if($resultado){
+	$tours = LeerTours($resultado);
+	json($tours);	
+}
 mysqli_close($GLOBALS["CONN"]);
 
 ?>

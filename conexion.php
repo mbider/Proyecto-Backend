@@ -63,6 +63,7 @@ function gustosPorTour($id) {
 }
 
 
+
 function LeerTours($resultado){
 	$tours = Array();
 	$ultimoId = -1;

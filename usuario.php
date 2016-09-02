@@ -42,13 +42,12 @@ function cargarToursPorUsuario($id) {
 }
 
 
-// ---
 
 $idusu = $_GET["id"];
 
 $usuario = CargarUsuario($idusu);
 $tours = CargarToursPorUsuario($idusu);
 
-$usuario["Tours"] = $tours;
+$usuario["ToursCreados"] = $tours;
 json($usuario);
 ?>
