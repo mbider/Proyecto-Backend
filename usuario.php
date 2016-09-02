@@ -41,13 +41,38 @@ function cargarToursPorUsuario($id) {
 		return array();
 }
 
+function CargarToursLikeados($id){
+	$consulta ="SELECT T.Id AS IdTour, T.Nombre AS NombreTour, T.Foto 
+	FROM tour T INNER JOIN likexusuario lu ON T.Id = lu.idtour WHERE lu.idusuario=".$id;
+	$ejecutar = mysqli_query($GLOBALS["CONN"], $consulta);	
+	$likeados = Array();
+	if(mysqli_num_rows($ejecutar)) {
+		while($row=mysqli_fetch_assoc($ejecutar)){
+			$id = $row['IdTour'];
+			$fototour=generarURL("/foto.php?id=".$id."&tabla=tour");
+			$likeado = Array(
+				"Id" => $id,
+				"Nombre" =>  $row['NombreTour'],
+				"FotoURL" => $fototour
+				
+			);
+			
+			Array_push($likeados, $likeado);
+		}
+		return $likeados;
+	}else
+		return array();
+	
+}
 
 
 $idusu = $_GET["id"];
 
 $usuario = CargarUsuario($idusu);
 $tours = CargarToursPorUsuario($idusu);
+$likeados = CargarToursLikeados($idusu);
 
 $usuario["ToursCreados"] = $tours;
+$usuario["ToursLikeados"] = $likeados;
 json($usuario);
 ?>
