@@ -2,12 +2,20 @@
 require_once("conexion.php");
 $usuarios = Array();
 function cargarUsuario($id) {
-	$query_search ="SELECT Nombre AS NombreUsuario, Id AS IdUsuario, Lugar_residencia AS Residencia FROM usuario WHERE Id=".$id;
+	$query_search ="SELECT Nombre AS NombreUsuario, Id AS IdUsuario, Foto, Lugar_residencia AS Residencia FROM usuario WHERE Id=".$id;
 	$query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
 	if(mysqli_num_rows($query_exec)) {
 		$row = mysqli_fetch_assoc($query_exec);
 		$id = $row['IdUsuario'];
-		$fotousu=generarURL("/foto.php?id=".$id."&tabla=usuario");
+		
+		if($row['Foto'] == ""){
+				$fotousu = "";
+			}
+			else{
+				
+				$fotousu=generarURL("/foto.php?id=".$id."&tabla=usuario");
+				
+			}
 		$usuario = Array(
 			"Id" => $id,
 			"Nombre" =>  $row['NombreUsuario'],
@@ -27,6 +35,7 @@ function cargarToursPorUsuario($id) {
 		while($row=mysqli_fetch_assoc($query_exec2)){
 			$id = $row['IdTour'];
 			$fototour=generarURL("/foto.php?id=".$id."&tabla=tour");
+			
 			$tour = Array(
 				"Id" => $id,
 				"Nombre" =>  $row['NombreTour'],

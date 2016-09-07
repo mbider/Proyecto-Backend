@@ -21,7 +21,5 @@ if($resultado){
 }
 
 
-
-
 mysqli_close($GLOBALS["CONN"]);
 ?>

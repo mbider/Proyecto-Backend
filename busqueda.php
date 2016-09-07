@@ -5,7 +5,7 @@ $texto = "%" . $_GET["q"] . "%";
 
 $consulta = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, T.* FROM tour T 
 	INNER JOIN usuario U ON T.Idusuario = U.Id 
- WHERE T.Nombre LIKE ? OR T.Descripcion LIKE ? OR T.Ubicacion LIKE ?";
+	WHERE T.Nombre LIKE ? OR T.Descripcion LIKE ? OR T.Ubicacion LIKE ?";
 	
 $stmt = $GLOBALS["CONN"]->prepare($consulta);
 $stmt->bind_param(
