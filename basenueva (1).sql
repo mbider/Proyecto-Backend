@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-08-2016 a las 15:05:17
+-- Tiempo de generación: 02-09-2016 a las 15:25:17
 -- Versión del servidor: 5.7.9
 -- Versión de PHP: 5.6.16
 
@@ -69,6 +69,27 @@ INSERT INTO `gustoxtour` (`Idtour`, `Idgusto`) VALUES
 (2, 6),
 (2, 7),
 (3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `likexusuario`
+--
+
+DROP TABLE IF EXISTS `likexusuario`;
+CREATE TABLE IF NOT EXISTS `likexusuario` (
+  `idtour` int(11) NOT NULL,
+  `idusuario` int(11) NOT NULL,
+  PRIMARY KEY (`idtour`,`idusuario`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `likexusuario`
+--
+
+INSERT INTO `likexusuario` (`idtour`, `idusuario`) VALUES
+(1, 2),
+(3, 1);
 
 -- --------------------------------------------------------
 
