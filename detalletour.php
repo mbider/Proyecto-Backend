@@ -11,7 +11,7 @@ $detalleusuario = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario
 $detallepunto = "SELECT P.Nombre AS NombrePunto, P.Dia AS DiaPunto, P.Id AS IdPunto, P.Descripcion AS DescripcionPunto, P.Direccion AS DireccionPunto, P.Latitud, P.Longitud
 				FROM punto P 
 				INNER JOIN tour T 
-				ON P.Idtour = T.Id WHERE P.Idtour=".$_GET["id"]."ORDER BY P.Dia";
+				ON P.Idtour = T.Id WHERE P.Idtour=".$_GET["id"]." ORDER BY P.Dia";
 
 $ejecucionpunto = mysqli_query($GLOBALS["CONN"], $detallepunto);				
 $ejecucionusuario = mysqli_query($GLOBALS["CONN"], $detalleusuario);
