@@ -41,7 +41,6 @@ function listarTours(){
 	return $tours;
 }
 
-
 function gustosPorTour($id) {
 				
 	$gustos_query = "SELECT g.Id, g.Nombre FROM tour T 
