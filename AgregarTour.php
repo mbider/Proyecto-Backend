@@ -19,9 +19,13 @@ $stmt->bind_param(
 );
 
 $res = $stmt->execute();
+var_dump($res);
+
+
 $id = $stmt->insert_id;
 $puntos = $Tour["Puntos"];
-//CONSULTA PARA INSERTAR TOURS
+
+//CONSULTA PARA INSERTAR PUNTOS
 foreach ($puntos as $punto) {
 	$consulta2 = "INSERT INTO punto (Longitud,Latitud,Foto,Direccion,Nombre,Idtour,Descripcion,Dia) 
 	values (?, ?, ?, ?, ?, ?, ?, ?)";
@@ -31,7 +35,11 @@ foreach ($puntos as $punto) {
 		$punto["Longitud"], $punto["Latitud"],$punto["Foto"],$punto["Direccion"],$punto["Nombre"],$id,
 		$punto["Descripcion"], $punto["Dia"]
 	);
+
 	$res = $stmt->execute();
+	var_dump($res);
+	$errores = $stmt->error;
+var_dump($errores);
 }
 
 //CONSULTA PARA INSERTAR GUSTOS
@@ -47,11 +55,12 @@ foreach ($gustos as $gusto) {
 		$id, $gusto["Idgusto"]
 	);
 	$res = $stmt->execute();
+	var_dump($res);
 }
 
 mysqli_commit($GLOBALS["CONN"]);
 
-$errores = $stmt->error;
+
 if($res){
 	json(Array("id" => $id));
 } else {
