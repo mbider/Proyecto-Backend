@@ -6,15 +6,14 @@ $Tour = json_decode(file_get_contents('php://input'), true);
 mysqli_begin_transaction($GLOBALS["CONN"]);
 
 //CONSULTA PARA INSERTAR TOURS
-$consulta1 = "INSERT INTO tour (Nombre,Ubicacion,foto,Descripcion,Likes,Idusuario) values (?, ?, ?, ?, ?, ?)";
+$consulta1 = "INSERT INTO tour (Nombre,Ubicacion,foto,Descripcion,Idusuario) values (?, ?, ?, ?, ?)";
 $stmt = $GLOBALS["CONN"]->prepare($consulta1);
 $stmt->bind_param(
-	"ssssss",
+	"sssss",
 	$Tour["Nombre"],
 	$Tour["Ubicacion"],
 	$Tour["Foto"],
 	$Tour["Descripcion"],
-	$Tour["Likes"],
 	$Tour["Idusuario"]
 );
 
