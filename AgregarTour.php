@@ -3,8 +3,6 @@ require_once("conexion.php");
 
 $Tour = json_decode(file_get_contents('php://input'), true);
 
-mysqli_begin_transaction($GLOBALS["CONN"]);
-
 //CONSULTA PARA INSERTAR TOURS
 $consulta1 = "INSERT INTO tour (Nombre,Ubicacion,foto,Descripcion,Idusuario) values (?, ?, ?, ?, ?)";
 $stmt = $GLOBALS["CONN"]->prepare($consulta1);
@@ -19,7 +17,8 @@ $stmt->bind_param(
 
 $res = $stmt->execute();
 var_dump($res);
-
+$errores = $stmt->error;
+var_dump($errores);
 
 $id = $stmt->insert_id;
 $puntos = $Tour["Puntos"];
@@ -37,8 +36,7 @@ foreach ($puntos as $punto) {
 
 	$res = $stmt->execute();
 	var_dump($res);
-	$errores = $stmt->error;
-var_dump($errores);
+	
 }
 
 //CONSULTA PARA INSERTAR GUSTOS
@@ -57,7 +55,6 @@ foreach ($gustos as $gusto) {
 	var_dump($res);
 }
 
-mysqli_commit($GLOBALS["CONN"]);
 
 
 if($res){
