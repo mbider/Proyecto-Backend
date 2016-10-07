@@ -78,9 +78,7 @@ function LeerTours($resultado){
 			
 			$tur=generarURL("/detalletour.php?id=" . $id);
 			$foto=generarURL("/foto.php?id=".$id."&tabla=tour");
-			echo "\n\n\nfoto \n\n\n";
-			echo $row["Foto"];
-			if(is_null($row["Foto"]) || $row["Foto"] == ""){
+			if(is_null($row["Foto"]) || $row["Foto"] == "" || $row["Foto"] == "hola" ){
 				$fotousu = "";
 			}
 			else{
