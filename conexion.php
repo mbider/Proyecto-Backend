@@ -33,7 +33,7 @@ function json($objeto) {
 
 function listarTours(){
 	
-	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS Foto, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
+	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS FotoUsuario, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
 	FROM tour T 
 	INNER JOIN usuario U ON T.Idusuario = U.Id ORDER BY T.Id DESC";
 
@@ -78,7 +78,7 @@ function LeerTours($resultado){
 			
 			$tur=generarURL("/detalletour.php?id=" . $id);
 			$foto=generarURL("/foto.php?id=".$id."&tabla=tour");
-			if(is_null($row["Foto"]) || $row["Foto"] == "" || $row["Foto"] == "hola" ){
+			if(is_null($row["FotoUsuario"]) || $row["FotoUsuario"] == "" || $row["FotoUsuario"] == "hola" ){
 				$fotousu = "";
 			}
 			else{
