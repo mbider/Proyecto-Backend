@@ -15,10 +15,7 @@ $stmt->bind_param(
 	$Tour["Idusuario"]
 );
 
-$res = $stmt->execute();
-var_dump($res);
-$errores = $stmt->error;
-var_dump($errores);
+$res = ejecutar($stmt);
 
 $id = $stmt->insert_id;
 $puntos = $Tour["Puntos"];
@@ -34,8 +31,7 @@ foreach ($puntos as $punto) {
 		$punto["Descripcion"], $punto["Dia"]
 	);
 
-	$res = $stmt->execute();
-	var_dump($res);
+	$res = ejecutar($stmt);
 	
 }
 
@@ -51,8 +47,7 @@ foreach ($gustos as $gusto) {
 		"ss",
 		$id, $gusto["Idgusto"]
 	);
-	$res = $stmt->execute();
-	var_dump($res);
+	$res = ejecutar($stmt);
 }
 
 
