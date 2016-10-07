@@ -78,12 +78,12 @@ function LeerTours($resultado){
 			
 			$tur=generarURL("/detalletour.php?id=" . $id);
 			$foto=generarURL("/foto.php?id=".$id."&tabla=tour");
-			if($row["Foto"] == ""){
-				echo "hola";
+			if(is_null($row["Foto"]) || $row["Foto"] == ""){
+				
 				$fotousu = "";
 			}
 			else{
-				echo "chau";
+				
 				$fotousu = generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
 			}
 			
