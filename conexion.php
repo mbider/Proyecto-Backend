@@ -33,7 +33,7 @@ function json($objeto) {
 
 function listarTours(){
 	
-	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
+	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS Foto, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
 	FROM tour T 
 	INNER JOIN usuario U ON T.Idusuario = U.Id ORDER BY T.Id DESC";
 
@@ -69,6 +69,7 @@ function LeerTours($resultado){
 	$ultimoId = -1;
 	if (mysqli_num_rows($resultado)){
 		while($row = mysqli_fetch_assoc($resultado)){
+
 			$id = $row["Id"];
 
 			$nombre=$row["Nombre"];
@@ -77,7 +78,12 @@ function LeerTours($resultado){
 			
 			$tur=generarURL("/detalletour.php?id=" . $id);
 			$foto=generarURL("/foto.php?id=".$id."&tabla=tour");
-			$fotousu=generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
+			if($row["Foto"] == ""){
+				$fotousu = "";
+			}
+			else{
+				$fotousu=generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
+			}
 			
 			$usuario = Array(
 				"Id" => $row["IdUsuario"],
@@ -108,7 +114,7 @@ function ListarDetalleTourAgregado($id){
 	$detalletour = "SELECT * FROM tour WHERE id=".$id;
 
 	$detallegusto = "SELECT G.Nombre AS NombreGusto, G.Id AS IdGusto FROM gustoxtour GT INNER JOIN gusto G ON G.Id = GT.Idgusto WHERE GT.Idtour=".$id;
-	$detalleusuario = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario
+	$detalleusuario = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS Foto
 					FROM tour T 
 					INNER JOIN usuario U 
 					ON T.Idusuario = U.Id WHERE T.id=".$id;
@@ -156,6 +162,12 @@ function ListarDetalleTourAgregado($id){
 		while($row = mysqli_fetch_array($ejecucionusuario)){
 			$id = $row['IdUsuario'];
 			$fotousu = generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
+			if($row["Foto"] == ""){
+				$fotousu = "";
+			}
+			else{
+				$fotousu = generarURL("/foto.php?id=".$row['IdUsuario']."&tabla=usuario");
+			}
 			$usuario = Array(
 				"Id" => $id,
 				"Nombre" => $row["NombreUsuario"],
@@ -180,9 +192,11 @@ function ListarDetalleTourAgregado($id){
 			"Usuario" => $usuario,
 			"Puntos" => $puntos
 		);
+		return $tour;
+	}else{
+		return null;
 	}
 	
-	return $tour;
 }
 
 function ejecutar($stmt) {
