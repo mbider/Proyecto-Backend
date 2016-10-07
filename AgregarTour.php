@@ -10,7 +10,7 @@ $stmt->bind_param(
 	"sssss",
 	$Tour["Nombre"],
 	$Tour["Ubicacion"],
-	$Tour["Foto"],
+	base64_decode($Tour["Foto"]),
 	$Tour["Descripcion"],
 	$Tour["Idusuario"]
 );
@@ -27,7 +27,7 @@ foreach ($puntos as $punto) {
 	$stmt = $GLOBALS["CONN"]->prepare($consulta2);
 	$stmt->bind_param(
 		"ssssssss",
-		$punto["Longitud"], $punto["Latitud"],$punto["Foto"],$punto["Direccion"],$punto["Nombre"],$id,
+		$punto["Longitud"], $punto["Latitud"],base64_decode($punto["Foto"]),$punto["Direccion"],$punto["Nombre"],$id,
 		$punto["Descripcion"], $punto["Dia"]
 	);
 
