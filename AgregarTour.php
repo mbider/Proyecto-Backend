@@ -26,11 +26,11 @@ $puntos = $Tour["Puntos"];
 foreach ($puntos as $punto) {
 	$consulta2 = "INSERT INTO punto (Longitud,Latitud,Foto,Direccion,Nombre,Idtour,Descripcion,Dia) 
 	values (?, ?, ?, ?, ?, ?, ?, ?)";
-	$variable = base64_decode($punto["Foto"]);
+	$varia = base64_decode($punto["Foto"]);
 	$stmt = $GLOBALS["CONN"]->prepare($consulta2);
 	$stmt->bind_param(
 		"ssssssss",
-		$punto["Longitud"], $punto["Latitud"],$variable,$punto["Direccion"],$punto["Nombre"],$id,
+		$punto["Longitud"], $punto["Latitud"],$varia,$punto["Direccion"],$punto["Nombre"],$id,
 		$punto["Descripcion"], $punto["Dia"]
 	);
 
