@@ -4,13 +4,15 @@ require_once("conexion.php");
 $Tour = json_decode(file_get_contents('php://input'), true);
 
 //CONSULTA PARA INSERTAR TOURS
-$consulta1 = "INSERT INTO tour (Nombre,Ubicacion,foto,Descripcion,Idusuario) values (?, ?, ?, ?, ?)";
+$consulta1 = "INSERT INTO tour (Nombre,Ubicacion,Foto,Descripcion,Idusuario) values (?, ?, ?, ?, ?)";
+
 $stmt = $GLOBALS["CONN"]->prepare($consulta1);
+$variable = base64_decode($Tour["Foto"]);
 $stmt->bind_param(
 	"sssss",
 	$Tour["Nombre"],
 	$Tour["Ubicacion"],
-	base64_decode($Tour["Foto"]),
+	$variable,
 	$Tour["Descripcion"],
 	$Tour["Idusuario"]
 );
@@ -24,10 +26,11 @@ $puntos = $Tour["Puntos"];
 foreach ($puntos as $punto) {
 	$consulta2 = "INSERT INTO punto (Longitud,Latitud,Foto,Direccion,Nombre,Idtour,Descripcion,Dia) 
 	values (?, ?, ?, ?, ?, ?, ?, ?)";
+	$variable = base64_decode($Tour["Foto"]);
 	$stmt = $GLOBALS["CONN"]->prepare($consulta2);
 	$stmt->bind_param(
 		"ssssssss",
-		$punto["Longitud"], $punto["Latitud"],base64_decode($punto["Foto"]),$punto["Direccion"],$punto["Nombre"],$id,
+		$punto["Longitud"], $punto["Latitud"],$variable ,$punto["Direccion"],$punto["Nombre"],$id,
 		$punto["Descripcion"], $punto["Dia"]
 	);
 
