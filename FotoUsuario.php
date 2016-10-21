@@ -22,5 +22,5 @@ if($res){
 }else{
 	json(array("Mensaje" => "NO"));
 }
-
+mysqli_close($GLOBALS["CONN"]);
 ?>

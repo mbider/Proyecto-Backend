@@ -20,4 +20,5 @@ else{
 }
 $mandar["respuesta"] = $mensaje;
 json($mandar);
+mysqli_close($GLOBALS["CONN"]);
 ?>
