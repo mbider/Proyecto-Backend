@@ -36,7 +36,8 @@ function listarTours(){
 	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS FotoUsuario, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
 	FROM tour T 
 	INNER JOIN usuario U ON T.Idusuario = U.Id ORDER BY T.Id DESC";
-
+	
+	//(PAGINA-1) * 5 - 1,5
 	$query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
 	$tours = LeerTours($query_exec);
 	return $tours;
