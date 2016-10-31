@@ -204,6 +204,14 @@ function ejecutar($stmt) {
 	$res = $stmt->execute();
 	
 	if ($res) {
+		$cant = $stmt->affected_rows;
+		if($cant > 0){
+			
+			$res = 1;
+		}else{
+			
+			$res = 0
+;		}
 		return $res;
 	} else {
 		http_response_code(500);
