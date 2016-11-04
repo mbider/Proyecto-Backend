@@ -31,16 +31,24 @@ function json($objeto) {
 	echo("\n");
 }
 
-function listarTours(){
+function listarTours($pagina){
 	
-	$query_search = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS FotoUsuario, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
-	FROM tour T 
-	INNER JOIN usuario U ON T.Idusuario = U.Id ORDER BY T.Id DESC";
+$TAMANO_PAGINA = 5;
+
+if (!$pagina) {
+   $inicio = 0;
+   $pagina = 1;
+}else {
+   $inicio = ($pagina - 1) * $TAMANO_PAGINA;
+}
 	
-	//(PAGINA-1) * 5 - 1,5
-	$query_exec = mysqli_query($GLOBALS["CONN"], $query_search);
-	$tours = LeerTours($query_exec);
-	return $tours;
+$consulta = "SELECT U.Nombre AS NombreUsuario, U.Id AS IdUsuario, U.Foto AS FotoUsuario, T.Id AS Id, T.Nombre, T.Ubicacion,T.Foto, T.Descripcion, T.Likes, T.Idusuario 
+FROM tour T 
+INNER JOIN usuario U ON T.Idusuario = U.Id ORDER BY T.Id DESC LIMIT ".$inicio."," . $TAMANO_PAGINA;
+
+$query_exec = mysqli_query($GLOBALS["CONN"], $consulta);
+$tours = LeerTours($query_exec);
+return $tours;
 }
 
 function gustosPorTour($id) {
