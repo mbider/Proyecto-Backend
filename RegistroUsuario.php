@@ -27,5 +27,4 @@ else {
 	http_response_code(500);
 	json(Array("Error" => $mensaje));
 }
-mysqli_close($GLOBALS["CONN"]);
 ?>

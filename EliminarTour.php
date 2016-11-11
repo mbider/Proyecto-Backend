@@ -41,8 +41,6 @@ $res = ejecutar($stmt);
 		json(array("mensaje" => "NO"));
 		
 	}
-
-mysqli_close($GLOBALS["CONN"]);
 }else{
 		json(array("mensaje" => "NO"));
 	

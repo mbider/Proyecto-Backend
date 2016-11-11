@@ -4,7 +4,5 @@ require_once("conexion.php");
 $pagina adentro de la funcion ListarTours*/ 
 $tours = listarTours();
 json($tours);
-	
-mysqli_close($GLOBALS["CONN"]);
 ?>
 

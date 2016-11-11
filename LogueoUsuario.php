@@ -24,7 +24,6 @@ if ($stmt->fetch()) {
 $res = $stmt->get_result();
 	
 	
-mysqli_close($GLOBALS["CONN"]);
 
 ?>
 	

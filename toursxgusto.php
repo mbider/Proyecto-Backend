@@ -18,5 +18,4 @@ if($resultado){
 	$tours = LeerTours($resultado);
 	json($tours);	
 }
-mysqli_close($GLOBALS["CONN"]);
 ?>

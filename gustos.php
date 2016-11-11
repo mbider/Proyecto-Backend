@@ -18,6 +18,4 @@ if(mysqli_num_rows($ejecuciongusto)){
 }
 json($gustos);
 
-mysqli_close($GLOBALS["CONN"]);
-
 ?>

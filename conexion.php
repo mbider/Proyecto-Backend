@@ -241,5 +241,11 @@ $GLOBALS["CONN"] = mysqli_connect(
 
 mysqli_query($GLOBALS["CONN"], "set names 'utf8'");
 
+function shutdown() {
+	mysqli_close($GLOBALS["CONN"]);
+}
+
+register_shutdown_function("shutdown");
+
 //mysqli_select_db($database_localhost, $localhost);
 ?>

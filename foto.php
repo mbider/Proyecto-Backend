@@ -11,6 +11,5 @@ if(mysqli_num_rows($query_exec)){
 
 header("Content-Type: image/jpeg");
 echo $foto;
-mysqli_close($GLOBALS["CONN"]);
 
 ?>

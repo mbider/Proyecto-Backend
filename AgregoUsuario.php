@@ -18,6 +18,5 @@ require_once("conexion.php");}
 	$stmt->execute();
 	$res = $stmt->get_result();
 	
-mysqli_close($GLOBALS["CONN"]);
 ?>
 	

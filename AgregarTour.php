@@ -62,6 +62,5 @@ if($res){
 }
 
 	
-mysqli_close($GLOBALS["CONN"]);
 ?>
 	

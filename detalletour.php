@@ -9,6 +9,4 @@ if($detalle){
 	json(array("Error" => "no encontrado"));
 }
 
-
-mysqli_close($GLOBALS["CONN"]);
 ?>

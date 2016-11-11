@@ -18,5 +18,4 @@ if ($res) {
 	json(Array("Actualizacion" => "No se pudo actualizar el like"));
 }
 	
-mysqli_close($GLOBALS["CONN"]);
 ?>

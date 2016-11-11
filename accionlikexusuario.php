@@ -41,6 +41,4 @@ if($informacion["accion"]== "insertar"){
 	json($accion);
 }
 	
-mysqli_close($GLOBALS["CONN"]);	
-	
 ?>

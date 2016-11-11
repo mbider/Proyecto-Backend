@@ -31,5 +31,4 @@ if(mysqli_num_rows($ejecutar)){
 		
 json($array);
 
-mysqli_close($GLOBALS["CONN"]);
 ?>
