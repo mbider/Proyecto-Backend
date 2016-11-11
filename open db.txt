@@ -1,1 +1,3 @@
 https://viajarort.scm.azurewebsites.net/phpmyadmin/tbl_replace.php
+
+abrir db
