@@ -6,6 +6,13 @@ if (getenv("MYSQL_HOSTNAME") === false) {
 	$GLOBALS["MYSQL_PASSWORD"] = "";
 	$GLOBALS["MYSQL_DATABASE"] = "basenueva";
 }
+else if (getenv("MYSQLCONNSTR_localdb") !== false) {
+	$connstr = getenv("MYSQLCONNSTR_localdb");
+	$GLOBALS["MYSQL_HOSTNAME"] = preg_replace("/^.*Data Source=(.+?);.*$/", "\\1", $connstr);
+    $GLOBALS["MYSQL_DATABASE"] = preg_replace("/^.*Database=(.+?);.*$/", "\\1", $connstr);
+    $GLOBALS["MYSQL_USERNAME"] = preg_replace("/^.*User Id=(.+?);.*$/", "\\1", $connstr);
+    $GLOBALS["MYSQL_PASSWORD"] = preg_replace("/^.*Password=(.+?)$/", "\\1", $connstr);
+}
 else {
 	$GLOBALS["MYSQL_HOSTNAME"] = getenv("MYSQL_HOSTNAME");
 	$GLOBALS["MYSQL_USERNAME"] = getenv("MYSQL_USERNAME");
