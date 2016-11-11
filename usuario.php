@@ -28,7 +28,7 @@ function cargarUsuario($id) {
 }
 
 function cargarToursPorUsuario($id) {
-	$query_search2 ="SELECT Nombre AS NombreTour , Id AS IdTour FROM tour WHERE Idusuario=".$id;
+	$query_search2 ="SELECT Nombre AS NombreTour , Id AS IdTour FROM tour WHERE Idusuario=".$id."ORDER BY Idtour DESC";
 	$query_exec2 = mysqli_query($GLOBALS["CONN"], $query_search2);	
 	$tours= Array();
 	if(mysqli_num_rows($query_exec2)) {
@@ -52,7 +52,7 @@ function cargarToursPorUsuario($id) {
 
 function CargarToursLikeados($id){
 	$consulta ="SELECT T.Id AS IdTour, T.Nombre AS NombreTour, T.Foto 
-	FROM tour T INNER JOIN likexusuario lu ON T.Id = lu.idtour WHERE lu.idusuario=".$id;
+	FROM tour T INNER JOIN likexusuario lu ON T.Id = lu.idtour WHERE lu.idusuario=".$id."ORDER BY lu.idtour DESC";
 	$ejecutar = mysqli_query($GLOBALS["CONN"], $consulta);	
 	$likeados = Array();
 	if(mysqli_num_rows($ejecutar)) {
