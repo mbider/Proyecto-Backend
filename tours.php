@@ -1,8 +1,8 @@
 ﻿<?php
-
 require_once("conexion.php");
-$pagina = $_GET["Pagina"];
-$tours = listarTours($pagina);
+/*$pagina = $_GET["Pagina"];
+$pagina adentro de la funcion ListarTours*/ 
+$tours = listarTours();
 json($tours);
 	
 mysqli_close($GLOBALS["CONN"]);
